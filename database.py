@@ -20,7 +20,7 @@ def add_student(id,first_name,last_name,grade):
     conn = sqlite3.connect('School_database.db')
     c = conn.cursor()
     
-    c.execute("INSERT INTO Students VALUES (?,?, ?, ? )",(id,first_name,last_name,grade))
+    c.execute("INSERT OR IGNORE INTO Students VALUES (?,?, ?, ? )",(id,first_name,last_name,grade))
     
     conn.commit()
     conn.close()
