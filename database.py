@@ -16,11 +16,21 @@ def create_students_tables():
     conn.commit()
     conn.close()
 
-def add_student(id,first_name,last_name,grade):
+def add_student(first_name,last_name,grade):
     conn = sqlite3.connect('School_database.db')
     c = conn.cursor()
-    
-    c.execute("INSERT OR IGNORE INTO Students VALUES (?,?, ?, ? )",(id,first_name,last_name,grade))
+        try:
+        student_id = int(input("Enter the id: "))
+        c.execute(f"SELECT student_id FROM Students where student_id = {student_id}")
+        results = c.fetchone()
+        if results != None:
+            print("ID is exists, You cannot add it")
+        else:
+            c.execute('INSERT INTO Students VALUES (?, ?, ?, ? )', (student_id, first_name, last_name, grade,))
+
+    except ValueError as err:
+        print(err)
+
     
     conn.commit()
     conn.close()
