@@ -20,11 +20,10 @@ def student():
     # print(database.get_students())
     while (user_input :=input(SCHOOL_SYSTEM).lower()) != "e":
         if user_input == "a":
-            id= int(input("Enter the id: "))
             first_name = input("Enter the first name: ")
             last_name = input("Enter the last name: ")
             grade = int(input("Enter the grade:9 to 12:  "))
-            database.add_student(id,first_name,last_name,grade)
+            database.add_student(first_name,last_name,grade)
             database.get_students()
             
         elif user_input == "d":
